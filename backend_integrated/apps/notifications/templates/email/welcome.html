@@ -1,0 +1,52 @@
+{% extends "email/base.html" %}
+
+{% block title %}Welcome to {{ site_name }}{% endblock %}
+
+{% block content %}
+<h2 style="color: #4F46E5;">Welcome to {{ site_name }}! 🎉</h2>
+
+<p>Dear {{ user.first_name }},</p>
+
+<p>Welcome to PresenceIQ, the intelligent attendance management system! We're excited to have you on board.</p>
+
+<div class="success">
+    <strong>✅ Your account has been successfully created!</strong>
+</div>
+
+<div class="info-box">
+    <h3 style="margin-top: 0;">Your Account Details:</h3>
+    <ul>
+        <li><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        <li><strong>Role:</strong> {{ user.role }}</li>
+        <li><strong>Employee/Student ID:</strong> {{ user.employee_id|default:user.student_id|default:"N/A" }}</li>
+    </ul>
+</div>
+
+<h3>What's Next?</h3>
+<ol>
+    <li><strong>Log in to your account</strong> using the button below</li>
+    <li><strong>Complete your profile</strong> with additional information</li>
+    {% if user.role == "STUDENT" %}
+    <li><strong>Register your face</strong> for attendance marking (9-angle capture)</li>
+    <li><strong>View your timetable</strong> and upcoming classes</li>
+    {% elif user.role == "TEACHER" %}
+    <li><strong>View your assigned classes</strong> and subjects</li>
+    <li><strong>Mark attendance</strong> using face recognition</li>
+    <li><strong>Generate reports</strong> for your classes</li>
+    {% elif user.role == "ADMIN" %}
+    <li><strong>Manage users</strong> and departments</li>
+    <li><strong>Configure system settings</strong></li>
+    <li><strong>View analytics</strong> and reports</li>
+    {% endif %}
+</ol>
+
+<div style="text-align: center;">
+    <a href="{{ login_url }}" class="button">Login to Your Account</a>
+</div>
+
+<p>If you have any questions or need assistance, please don't hesitate to contact our support team.</p>
+
+<p>Best regards,<br>
+<strong>The {{ site_name }} Team</strong></p>
+{% endblock %}

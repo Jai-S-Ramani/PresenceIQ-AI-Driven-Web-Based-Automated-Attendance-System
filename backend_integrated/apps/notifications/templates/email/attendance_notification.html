@@ -1,0 +1,59 @@
+{% extends "email/base.html" %} {% block title %}Attendance Update{% endblock %}
+{% block content %}
+<h2 style="color: #4f46e5">Attendance Update 📊</h2>
+
+<p>Dear {{ student.first_name }},</p>
+
+<p>Your attendance has been recorded for the following class:</p>
+
+<div class="info-box">
+	<h3 style="margin-top: 0">Class Details:</h3>
+	<ul>
+		<li><strong>Subject:</strong> {{ class_session.subject.name }}</li>
+		<li><strong>Date:</strong> {{ class_session.date|date:"F d, Y" }}</li>
+		<li>
+			<strong>Time:</strong> {{ class_session.start_time|time:"h:i A" }} -
+			{{ class_session.end_time|time:"h:i A" }}
+		</li>
+		<li>
+			<strong>Teacher:</strong> {{ class_session.teacher.first_name }} {{
+			class_session.teacher.last_name }}
+		</li>
+	</ul>
+</div>
+
+{% if status == "PRESENT" %}
+<div class="success">
+	<strong>✅ Status: Present</strong><br />
+	Your attendance has been successfully marked!
+</div>
+{% elif status == "ABSENT" %}
+<div class="alert">
+	<strong>❌ Status: Absent</strong><br />
+	You were marked absent for this class.
+</div>
+{% else %}
+<div
+	style="
+		background-color: #fef3c7;
+		border-left: 4px solid #f59e0b;
+		padding: 15px;
+		margin: 15px 0;
+	"
+>
+	<strong>⏰ Status: {{ status }}</strong><br />
+	Your attendance status has been updated.
+</div>
+{% endif %}
+
+<p>To view your complete attendance record:</p>
+
+<div style="text-align: center">
+	<a href="{{ dashboard_url }}" class="button">View Dashboard</a>
+</div>
+
+<p>
+	Best regards,<br />
+	<strong>The {{ site_name }} Team</strong>
+</p>
+{% endblock %}

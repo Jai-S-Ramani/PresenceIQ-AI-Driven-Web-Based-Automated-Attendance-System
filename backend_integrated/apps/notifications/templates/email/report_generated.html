@@ -1,0 +1,55 @@
+{% extends "email/base.html" %} {% block title %}Report Generated{% endblock %}
+{% block content %}
+<h2 style="color: #10b981">✅ Your Report is Ready!</h2>
+
+<p>Dear {{ user.first_name }},</p>
+
+<p>
+	Your requested <strong>{{ report_type }}</strong> has been successfully
+	generated and is now available for download.
+</p>
+
+<div class="success">
+	<h3 style="margin-top: 0">Report Generated Successfully!</h3>
+	<p>Your report has been processed and is ready to view.</p>
+</div>
+
+<div class="info-box">
+	<h3 style="margin-top: 0">Report Details:</h3>
+	<ul>
+		<li><strong>Report Type:</strong> {{ report_type }}</li>
+		<li>
+			<strong>Generated For:</strong> {{ user.first_name }} {{
+			user.last_name }}
+		</li>
+		<li>
+			<strong>Generated On:</strong> {{ current_date|default:"now"|date:"F
+			d, Y at h:i A" }}
+		</li>
+	</ul>
+</div>
+
+<p>Click the button below to access your report:</p>
+
+<div style="text-align: center">
+	<a href="{{ report_url }}" class="button">View Report</a>
+</div>
+
+<h3>Report Features:</h3>
+<ul>
+	<li>📊 Detailed statistics and analytics</li>
+	<li>📈 Visual charts and graphs</li>
+	<li>📄 Downloadable in multiple formats</li>
+	<li>🔍 Filter and sort options</li>
+</ul>
+
+<p style="color: #666; font-size: 14px">
+	<strong>Note:</strong> This report reflects data up to the time of
+	generation. For real-time updates, please visit your dashboard.
+</p>
+
+<p>
+	Best regards,<br />
+	<strong>The {{ site_name }} Team</strong>
+</p>
+{% endblock %}

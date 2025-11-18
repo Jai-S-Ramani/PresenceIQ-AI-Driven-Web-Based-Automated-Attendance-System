@@ -1,0 +1,60 @@
+{% extends "email/base.html" %} {% block title %}Class Reminder{% endblock %} {%
+block content %}
+<h2 style="color: #4f46e5">📅 Class Reminder</h2>
+
+<p>Dear {{ teacher.first_name }},</p>
+
+<p>This is a friendly reminder about your upcoming class:</p>
+
+<div class="info-box">
+	<h3 style="margin-top: 0">Class Details:</h3>
+	<ul>
+		<li><strong>Subject:</strong> {{ class_session.subject.name }}</li>
+		<li><strong>Subject Code:</strong> {{ class_session.subject.code }}</li>
+		<li>
+			<strong>Date:</strong> {{ class_session.date|date:"l, F d, Y" }}
+		</li>
+		<li>
+			<strong>Time:</strong> {{ class_session.start_time|time:"h:i A" }} -
+			{{ class_session.end_time|time:"h:i A" }}
+		</li>
+		<li><strong>Duration:</strong> {{ class_session.duration }} minutes</li>
+		{% if class_session.room %}
+		<li><strong>Room:</strong> {{ class_session.room }}</li>
+		{% endif %}
+	</ul>
+</div>
+
+<h3>Before Class Checklist:</h3>
+<ul>
+	<li>✅ Review lesson plan and materials</li>
+	<li>✅ Ensure attendance system is ready</li>
+	<li>✅ Check face recognition setup</li>
+	<li>✅ Prepare any required equipment</li>
+</ul>
+
+<div
+	style="
+		background-color: #eff6ff;
+		border-left: 4px solid #3b82f6;
+		padding: 15px;
+		margin: 15px 0;
+	"
+>
+	<strong>💡 Quick Actions:</strong><br />
+	• Mark attendance using face recognition<br />
+	• View student list for this class<br />
+	• Access class materials and resources
+</div>
+
+<div style="text-align: center">
+	<a href="{{ dashboard_url }}" class="button">Go to Dashboard</a>
+</div>
+
+<p>Good luck with your class!</p>
+
+<p>
+	Best regards,<br />
+	<strong>The {{ site_name }} Team</strong>
+</p>
+{% endblock %}

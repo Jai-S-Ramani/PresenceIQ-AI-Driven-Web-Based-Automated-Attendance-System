@@ -1,0 +1,71 @@
+{% extends "email/base.html" %} {% block title %}Low Attendance Alert{% endblock
+%} {% block content %}
+<h2 style="color: #ef4444">⚠️ Low Attendance Alert</h2>
+
+<p>Dear {{ student.first_name }},</p>
+
+<p>This is an important notification regarding your attendance.</p>
+
+<div class="alert">
+	<h3 style="margin-top: 0">Low Attendance Warning</h3>
+	<p>
+		Your attendance for <strong>{{ subject.name }}</strong> has fallen below
+		the required threshold.
+	</p>
+	<p style="font-size: 24px; margin: 10px 0">
+		<strong
+			>Current Attendance: {{ attendance_percentage|floatformat:1
+			}}%</strong
+		>
+	</p>
+</div>
+
+<div class="info-box">
+	<h3 style="margin-top: 0">Subject Details:</h3>
+	<ul>
+		<li><strong>Subject:</strong> {{ subject.name }}</li>
+		<li><strong>Subject Code:</strong> {{ subject.code }}</li>
+		<li><strong>Department:</strong> {{ subject.department.name }}</li>
+		<li><strong>Required Attendance:</strong> 75%</li>
+		<li>
+			<strong>Your Attendance:</strong> {{
+			attendance_percentage|floatformat:1 }}%
+		</li>
+	</ul>
+</div>
+
+<h3>What You Should Do:</h3>
+<ul>
+	<li>Attend all upcoming classes regularly</li>
+	<li>Contact your teacher if you have valid reasons for absences</li>
+	<li>Check your timetable to avoid missing classes</li>
+	<li>Ensure your face is properly registered for attendance marking</li>
+</ul>
+
+<div
+	style="
+		background-color: #fef3c7;
+		border-left: 4px solid #f59e0b;
+		padding: 15px;
+		margin: 15px 0;
+	"
+>
+	<strong>⚠️ Important:</strong><br />
+	Students with attendance below 75% may not be eligible to appear in
+	examinations. Please take immediate action to improve your attendance.
+</div>
+
+<div style="text-align: center">
+	<a href="{{ dashboard_url }}" class="button">View Full Attendance Report</a>
+</div>
+
+<p>
+	If you need assistance or have questions, please contact your teacher or the
+	academic office.
+</p>
+
+<p>
+	Best regards,<br />
+	<strong>The {{ site_name }} Team</strong>
+</p>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "email/base.html" %} {% block title %}Face Registration Complete{%
+endblock %} {% block content %}
+<h2 style="color: #10b981">✅ Face Registration Complete!</h2>
+
+<p>Dear {{ user.first_name }},</p>
+
+<p>
+	Great news! Your face has been successfully registered in the {{ site_name
+	}} system.
+</p>
+
+<div class="success">
+	<h3 style="margin-top: 0">Registration Successful! 🎉</h3>
+	<p>Your 9-angle facial data has been captured and processed.</p>
+</div>
+
+<div class="info-box">
+	<h3 style="margin-top: 0">What This Means:</h3>
+	<ul>
+		<li>✅ Your face can now be used for attendance marking</li>
+		<li>✅ Multi-model AI recognition is active</li>
+		<li>✅ Secure and encrypted facial data storage</li>
+		<li>✅ Ready for contactless attendance</li>
+	</ul>
+</div>
+
+<h3>How It Works:</h3>
+<ol>
+	<li>When you attend a class, look at the camera</li>
+	<li>Our AI system will recognize your face</li>
+	<li>Your attendance will be automatically marked</li>
+	<li>You'll receive a confirmation notification</li>
+</ol>
+
+<div
+	style="
+		background-color: #eff6ff;
+		border-left: 4px solid #3b82f6;
+		padding: 15px;
+		margin: 15px 0;
+	"
+>
+	<strong>💡 Pro Tip:</strong><br />
+	For best results, ensure good lighting and look directly at the camera when
+	marking attendance.
+</div>
+
+<h3>Next Steps:</h3>
+<ul>
+	<li>Check your class timetable</li>
+	<li>Attend classes regularly</li>
+	<li>Monitor your attendance dashboard</li>
+	<li>Update your profile if needed</li>
+</ul>
+
+<div style="text-align: center">
+	<a href="{{ dashboard_url }}" class="button">Go to Dashboard</a>
+</div>
+
+<p>
+	If you experience any issues with face recognition, please contact technical
+	support.
+</p>
+
+<p>
+	Best regards,<br />
+	<strong>The {{ site_name }} Team</strong>
+</p>
+{% endblock %}
